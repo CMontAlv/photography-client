@@ -7,9 +7,7 @@ import { Page } from '../../components/page';
 import { useFormFields } from '../../hooks/use-form-fields';
 
 import { login } from '../../state/application/actions';
-import { useDispatch, useSelector } from '../../state/store';
-
-import { getIsLoggedIn } from '../../state/application/selectors';
+import { useDispatch } from '../../state/store';
 
 import './styles.css';
 
@@ -18,7 +16,7 @@ export const Login: React.FunctionComponent = () => {
 
     const dispatch = useDispatch();
 
-    const loginHandler = (e: UIEvent) => {
+    const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         dispatch(login());
@@ -26,7 +24,7 @@ export const Login: React.FunctionComponent = () => {
 
     return (
         <Page className="login-page">
-            <Form onSubmit={() => {}}>
+            <Form onSubmit={loginHandler}>
                 <Form.Group controlId="email">
                     <Form.Label>Email</Form.Label>
                     <Form.Control autoFocus type="email" value={fields.email} onChange={setFields} />
@@ -35,7 +33,7 @@ export const Login: React.FunctionComponent = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={fields.password} onChange={setFields} />
                 </Form.Group>
-                <AsyncButton block type="submit" isLoading={false} disabled={false} onClick={loginHandler}>
+                <AsyncButton block type="submit" isLoading={false} disabled={false}>
                     Login
                 </AsyncButton>
             </Form>
