@@ -6,11 +6,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { StateProvider } from './state/store';
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <App />
+            <StateProvider>
+                <App />
+            </StateProvider>
         </Router>
     </React.StrictMode>,
     document.getElementById('root')

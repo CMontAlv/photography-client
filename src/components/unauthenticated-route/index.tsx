@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
+import { getIsLoggedIn } from '../../state/application/selectors';
+import { useSelector } from '../../state/store';
+
 function querystring(name: string, url: string = window.location.href) {
     name = name.replace(/[[]]/g, '\\$&');
 
@@ -21,11 +24,11 @@ type Props = React.ComponentProps<typeof Route>;
 
 export const UnauthenticatedRoute: React.FunctionComponent<Props> = ({ children, ...rest }) => {
     const redirect = querystring('redirect');
-    const isAuthenticated = false;
+    const isLoggedIn = useSelector(getIsLoggedIn);
 
     return (
         <Route {...rest}>
-            {!isAuthenticated ? children : <Redirect to={redirect === '' || redirect === null ? '/' : redirect} />}
+            {!isLoggedIn ? children : <Redirect to={redirect === '' || redirect === null ? '/' : redirect} />}
         </Route>
     );
 };

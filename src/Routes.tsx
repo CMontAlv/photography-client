@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { Login } from './containers/login';
 import { SignUp } from './containers/sign-up';
+import { Home } from './containers/home';
 import { NotFound } from './components/not-found';
 import { AuthenticatedRoute } from './components/authenticated-route';
 import { UnauthenticatedRoute } from './components/unauthenticated-route';
@@ -10,7 +11,7 @@ import { UnauthenticatedRoute } from './components/unauthenticated-route';
 export const Routes: React.FunctionComponent = () => (
     <Switch>
         <AuthenticatedRoute exact path="/">
-            <></>
+            <Home />
         </AuthenticatedRoute>
         <UnauthenticatedRoute exact path="/login">
             <Login />
