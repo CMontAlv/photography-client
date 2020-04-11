@@ -1,0 +1,16 @@
+@media all and (min-width: 480px) {
+    .page.sign-up-page {
+        padding: 60px 0;
+    }
+
+    .sign-up-page form {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+
+    .sign-up-page .subtitle {
+        font-size: 14px;
+        padding-bottom: 10px;
+        color: #999;
+    }
+}
