@@ -77,13 +77,7 @@ export const SignUp: React.FunctionComponent = () => {
                     <Form.Control autoFocus type="tel" onChange={setFields} value={fields.confirmationCode} />
                     <div className="subtitle">Please check your email for the code.</div>
                 </Form.Group>
-                <AsyncButton
-                    block
-                    type="submit"
-                    bsSize="large"
-                    isLoading={isConfirming}
-                    disabled={!validateConfirmationForm()}
-                >
+                <AsyncButton block type="submit" isLoading={isConfirming} disabled={!validateConfirmationForm()}>
                     Verify
                 </AsyncButton>
             </Form>

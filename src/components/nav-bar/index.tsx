@@ -34,7 +34,7 @@ export const NavBar: React.FunctionComponent = () => {
 
     return (
         <Navbar className="navigation-bar" bg="light" expand="lg">
-            <Navbar.Brand href="/home">Photo Journal</Navbar.Brand>
+            <Navbar.Brand href={routes.home}>Photo Journal</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">

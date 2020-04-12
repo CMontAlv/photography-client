@@ -15,6 +15,7 @@ export const NewEntry: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const file = React.useRef(null);
     const [content, setContent] = React.useState('');
+    const [isUploadingEntry, setIsUploadingEntry] = React.useState(false);
 
     const handleContentChange = React.useCallback((e) => setContent(e.target.value), [setContent]);
 
@@ -22,20 +23,25 @@ export const NewEntry: React.FunctionComponent = () => {
         file.current = e.target.files[0];
     }, []);
 
-    const handleSubmit = React.useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleSubmit = React.useCallback(
+        async (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
 
-        dispatch(createNewEntry());
+            setIsUploadingEntry(true);
+            dispatch(createNewEntry());
 
-        const [result, error] = await api.createEntry(file, content);
+            const [result, error] = await api.createEntry(file, content);
 
-        if (error) {
-            dispatch(createNewEntryError());
-            return;
-        }
+            if (error) {
+                dispatch(createNewEntryError());
+                return;
+            }
 
-        dispatch(createNewEntrySuccess({ content: result.content, attachment: result.attachment }));
-    }, []);
+            dispatch(createNewEntrySuccess({ content: result.content, attachment: result.attachment }));
+            setIsUploadingEntry(false);
+        },
+        [content, file, dispatch]
+    );
 
     return (
         <Page className="new-entry-page">
@@ -47,7 +53,7 @@ export const NewEntry: React.FunctionComponent = () => {
                     <Form.Label>Attachment</Form.Label>
                     <Form.Control onChange={handleFileChange} type="file" accept="image/*" />
                 </Form.Group>
-                <AsyncButton block type="submit" bsSize="large" bsStyle="primary" isLoading={false} disabled={false}>
+                <AsyncButton block type="submit" isLoading={isUploadingEntry} disabled={!content}>
                     Create
                 </AsyncButton>
             </Form>
