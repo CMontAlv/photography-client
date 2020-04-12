@@ -8,12 +8,6 @@ export const StoreContext = React.createContext({
     dispatch: (action: Action) => {},
 });
 
-export const StateProvider: React.FunctionComponent = ({ children }) => {
-    const [state, dispatch] = React.useReducer(rootReducer, storeInitialState);
-
-    return <StoreContext.Provider value={{ state, dispatch }}>{children}</StoreContext.Provider>;
-};
-
 export function useDispatch() {
     const { dispatch } = React.useContext(StoreContext);
 
@@ -25,3 +19,9 @@ export function useSelector(selector: Selector) {
 
     return selector(state);
 }
+
+export const StateProvider: React.FunctionComponent = ({ children }) => {
+    const [state, dispatch] = React.useReducer(rootReducer, storeInitialState);
+
+    return <StoreContext.Provider value={{ state, dispatch }}>{children}</StoreContext.Provider>;
+};
