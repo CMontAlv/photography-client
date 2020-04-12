@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Container, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { Storage } from 'aws-amplify';
 
 import { api } from '../../api/entries';
 
+import { Entry } from '../../components/entry';
 import { Page } from '../../components/page';
 
 import * as routes from '../../constants/routes';
@@ -32,6 +34,10 @@ export const Entries: React.FunctionComponent = () => {
         }
 
         dispatch(receiveEntries(entries));
+
+        const result = await Storage.list('', { level: 'private' });
+
+        console.log(result);
     };
 
     React.useEffect(() => {
@@ -41,7 +47,19 @@ export const Entries: React.FunctionComponent = () => {
     return (
         <Page className="entries-page">
             {entries.length ? (
-                'These are your entries'
+                <Container>
+                    <Row>
+                        {entries
+                            .concat(entries)
+                            .concat(entries)
+                            .concat(entries)
+                            .map(({ content, attachment }) => (
+                                <Col xs={6}>
+                                    <Entry content={content} attachment={attachment} />
+                                </Col>
+                            ))}
+                    </Row>
+                </Container>
             ) : (
                 <div>
                     <p>Seems like you don't have any entries yet.</p>

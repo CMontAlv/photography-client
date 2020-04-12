@@ -2,18 +2,15 @@ import { createSelector } from 'reselect';
 
 import { EntriesState } from './';
 import { Entry } from './types';
-import { StoreState } from '../types';
+import { StoreState, Selector } from '../types';
 
 const getState = (state: StoreState): EntriesState => state.entries;
 
-export const getEntries: (state: StoreState) => Array<Entry> = createSelector([getState], (state) => state.entries);
+export const getEntries: Selector<Array<Entry>> = createSelector([getState], (state) => state.entries);
 
-export const getFetchEntriesError: (state: StoreState) => boolean = createSelector(
-    [getState],
-    (state) => state.fetchEntriesError
-);
+export const getFetchEntriesError: Selector<boolean> = createSelector([getState], (state) => state.fetchEntriesError);
 
-export const getCreateNewEntryError: (state: StoreState) => boolean = createSelector(
+export const getCreateNewEntryError: Selector<boolean> = createSelector(
     [getState],
     (state) => state.createNewEntryError
 );

@@ -8,13 +8,13 @@ export const StoreContext = React.createContext({
     dispatch: (action: Action) => {},
 });
 
-export function useDispatch() {
+export const useDispatch = () => {
     const { dispatch } = React.useContext(StoreContext);
 
     return dispatch;
-}
+};
 
-export function useSelector(selector: Selector) {
+export function useSelector<T>(selector: Selector<T>): T {
     const { state } = React.useContext(StoreContext);
 
     return selector(state);

@@ -19,9 +19,12 @@ export const NewEntry: React.FunctionComponent = () => {
 
     const handleContentChange = React.useCallback((e) => setContent(e.target.value), [setContent]);
 
-    const handleFileChange = React.useCallback((e) => {
-        file.current = e.target.files[0];
-    }, []);
+    const handleFileChange = React.useCallback(
+        (e) => {
+            file.current = e.target.files[0];
+        },
+        [file]
+    );
 
     const handleSubmit = React.useCallback(
         async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,7 +33,7 @@ export const NewEntry: React.FunctionComponent = () => {
             setIsUploadingEntry(true);
             dispatch(createNewEntry());
 
-            const [result, error] = await api.createEntry(file, content);
+            const [result, error] = await api.createEntry(file.current, content);
 
             if (error) {
                 dispatch(createNewEntryError());

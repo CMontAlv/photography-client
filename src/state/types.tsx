@@ -11,6 +11,6 @@ export type Action = {
     payload?: any;
 };
 
-export type Selector = (state: StoreState) => any;
+export type Selector<T> = (state: StoreState) => T;
 
 export type Reducer = (state: StoreState, action: Action) => StoreState;

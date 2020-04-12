@@ -3,7 +3,6 @@ import { Amplify } from 'aws-amplify';
 import { config } from '.';
 
 export const initAmplify = () => {
-    console.log(config);
     Amplify.configure({
         Auth: {
             mandatorySignIn: true,

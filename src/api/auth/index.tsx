@@ -45,7 +45,7 @@ export const confirmSignUp = async (email: string, confirmationCode: string): Pr
 
 export const checkCurrentSession = async (): Promise<[any, Error | null]> => {
     try {
-        await Auth.currentSession();
+        const result = await Auth.currentSession();
 
         return [{ status: 200 }, null];
     } catch (e) {
