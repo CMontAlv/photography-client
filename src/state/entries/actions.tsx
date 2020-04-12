@@ -2,9 +2,9 @@ import {
     FETCH_ENTRIES,
     RECEIVE_ENTRIES,
     FETCH_ENTRIES_ERROR,
-    CREATE_NEW_NOTE,
-    CREATE_NEW_NOTE_SUCCESS,
-    CREATE_NEW_NOTE_ERROR,
+    CREATE_NEW_ENTRY,
+    CREATE_NEW_ENTRY_SUCCESS,
+    CREATE_NEW_ENTRY_ERROR,
 } from './constants';
 import { Entry } from './types';
 
@@ -32,37 +32,26 @@ export const fetchEntriesError = (): FetchEntriesErrorAction => ({
     type: FETCH_ENTRIES_ERROR,
 });
 
-export type CreateNewNotePayload = Entry;
-export type CreateNewNoteAction = {
-    type: typeof CREATE_NEW_NOTE;
-    payload: CreateNewNotePayload;
+export type CreateNewEntryAction = {
+    type: typeof CREATE_NEW_ENTRY;
 };
-export const createNewNote = (payload: CreateNewNotePayload): CreateNewNoteAction => ({
-    type: CREATE_NEW_NOTE,
+export const createNewEntry = (): CreateNewEntryAction => ({
+    type: CREATE_NEW_ENTRY,
+});
+
+export type CreateNewEntrySuccessPayload = Entry;
+export type CreateNewEntrySuccessAction = {
+    type: typeof CREATE_NEW_ENTRY_SUCCESS;
+    payload: CreateNewEntrySuccessPayload;
+};
+export const createNewEntrySuccess = (payload: CreateNewEntrySuccessPayload): CreateNewEntrySuccessAction => ({
+    type: CREATE_NEW_ENTRY_SUCCESS,
     payload,
 });
 
-export type CreateNewNoteSuccessPayload = Entry;
-export type CreateNewNoteSuccessAction = {
-    type: typeof CREATE_NEW_NOTE_SUCCESS;
-    payload: CreateNewNoteSuccessPayload;
+export type CreateNewEntryErrorAction = {
+    type: typeof CREATE_NEW_ENTRY_ERROR;
 };
-export const createNewNoteSuccess = (payload: CreateNewNoteSuccessPayload): CreateNewNoteSuccessAction => ({
-    type: CREATE_NEW_NOTE_SUCCESS,
-    payload,
+export const createNewEntryError = (): CreateNewEntryErrorAction => ({
+    type: CREATE_NEW_ENTRY_ERROR,
 });
-
-export type CreateNewNoteErrorAction = {
-    type: typeof CREATE_NEW_NOTE_ERROR;
-};
-export const createNewNoteError = (): CreateNewNoteErrorAction => ({
-    type: CREATE_NEW_NOTE_ERROR,
-});
-
-export type EntriesAction =
-    | FetchEntriesAction
-    | ReceiveEntriesAction
-    | FetchEntriesErrorAction
-    | CreateNewNoteAction
-    | CreateNewNoteSuccessAction
-    | CreateNewNoteErrorAction;

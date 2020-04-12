@@ -13,7 +13,7 @@ export const getFetchEntriesError: (state: StoreState) => boolean = createSelect
     (state) => state.fetchEntriesError
 );
 
-export const getCreateNewNoteError: (state: StoreState) => boolean = createSelector(
+export const getCreateNewEntryError: (state: StoreState) => boolean = createSelector(
     [getState],
-    (state) => state.createNewNoteError
+    (state) => state.createNewEntryError
 );

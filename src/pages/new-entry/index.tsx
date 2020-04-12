@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { Form } from 'react-bootstrap';
 
+import { api } from '../../api/entries';
+
 import { AsyncButton } from '../../components/async-button';
 import { Page } from '../../components/page';
+
+import { createNewEntry, createNewEntryError, createNewEntrySuccess } from '../../state/entries/actions';
+import { useSelector, useDispatch } from '../../state/store';
 
 import './styles.css';
 
 export const NewEntry: React.FunctionComponent = () => {
+    const dispatch = useDispatch();
     const file = React.useRef(null);
     const [content, setContent] = React.useState('');
 
@@ -16,7 +22,20 @@ export const NewEntry: React.FunctionComponent = () => {
         file.current = e.target.files[0];
     }, []);
 
-    const handleSubmit = React.useCallback(() => {}, []);
+    const handleSubmit = React.useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        dispatch(createNewEntry());
+
+        const [result, error] = await api.createEntry(file, content);
+
+        if (error) {
+            dispatch(createNewEntryError());
+            return;
+        }
+
+        dispatch(createNewEntrySuccess({ content: result.content, attachment: result.attachment }));
+    }, []);
 
     return (
         <Page className="new-entry-page">
