@@ -26,7 +26,7 @@ export const NewEntry: React.FunctionComponent = () => {
                 </Form.Group>
                 <Form.Group controlId="file">
                     <Form.Label>Attachment</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="image" />
+                    <Form.Control onChange={handleFileChange} type="file" accept="image/*" />
                 </Form.Group>
                 <AsyncButton block type="submit" bsSize="large" bsStyle="primary" isLoading={false} disabled={false}>
                     Create

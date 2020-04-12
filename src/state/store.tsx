@@ -22,6 +22,6 @@ export function useDispatch() {
 
 export function useSelector(selector: Selector) {
     const { state } = React.useContext(StoreContext);
-    console.log(state);
+
     return selector(state);
 }

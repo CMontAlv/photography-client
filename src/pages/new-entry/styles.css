@@ -1,5 +1,6 @@
 .new-entry-page form {
     padding-bottom: 15px;
+    flex: 1;
 }
 
 .new-entry-page form textarea {
