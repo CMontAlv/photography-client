@@ -6,8 +6,6 @@ type ReducersObjectType = {
     [key in StoreKeys]: (state: any, action: Action) => any;
 };
 
-type InnerFunctionReturnType = (state: any) => any;
-
 export const combineReducers = (reducers: ReducersObjectType): Reducer => {
     return (state: StoreState, action: Action): StoreState => {
         // @ts-ignore TODO - investigate this
