@@ -2,6 +2,8 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
+import { api } from '../../api/auth';
+
 import * as routes from '../../constants/routes';
 
 import { logout } from '../../state/application/actions';
@@ -16,12 +18,19 @@ export const NavBar: React.FunctionComponent = () => {
 
     const isLoggedIn = useSelector(getIsLoggedIn);
 
-    const logoutHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        e.preventDefault();
+    const logoutHandler = React.useCallback(
+        async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            e.preventDefault();
 
-        dispatch(logout());
-        history.push(routes.login);
-    };
+            const [, error] = await api.logout();
+
+            if (!error) {
+                dispatch(logout());
+                history.push(routes.login);
+            }
+        },
+        [dispatch, history]
+    );
 
     return (
         <Navbar className="navigation-bar" bg="light" expand="lg">

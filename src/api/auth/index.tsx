@@ -10,7 +10,7 @@ export const login = async (email: string, password: string): Promise<[any, Erro
     }
 };
 
-export const logout = async () => {
+export const logout = async (): Promise<[any, Error | null]> => {
     try {
         await Auth.signOut();
 
@@ -43,9 +43,20 @@ export const confirmSignUp = async (email: string, confirmationCode: string): Pr
     }
 };
 
+export const checkCurrentSession = async (): Promise<[any, Error | null]> => {
+    try {
+        await Auth.currentSession();
+
+        return [{ status: 200 }, null];
+    } catch (e) {
+        return [null, e];
+    }
+};
+
 export const api = {
     login,
     logout,
     signUp,
     confirmSignUp,
+    checkCurrentSession,
 };
