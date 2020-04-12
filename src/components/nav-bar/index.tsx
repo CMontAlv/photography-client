@@ -2,6 +2,8 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
+import * as routes from '../../constants/routes';
+
 import { logout } from '../../state/application/actions';
 import { getIsLoggedIn } from '../../state/application/selectors';
 import { useDispatch, useSelector } from '../../state/store';
@@ -16,7 +18,7 @@ export const NavBar: React.FunctionComponent = () => {
         e.preventDefault();
 
         dispatch(logout());
-        history.push('/login');
+        history.push(routes.login);
     };
 
     return (
@@ -30,10 +32,10 @@ export const NavBar: React.FunctionComponent = () => {
                     ) : (
                         <>
                             <Nav.Item>
-                                <Nav.Link href="/sign-up">Sign Up</Nav.Link>
+                                <Nav.Link href={routes.signUp}>Sign Up</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="/login">Login</Nav.Link>
+                                <Nav.Link href={routes.login}>Login</Nav.Link>
                             </Nav.Item>
                         </>
                     )}
