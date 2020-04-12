@@ -1,9 +1,15 @@
 import { LOGIN, LOGOUT } from './constants';
 
-export const login = () => ({
+export type LoginAction = {
+    type: typeof LOGIN;
+};
+export const login = (): LoginAction => ({
     type: LOGIN,
 });
 
-export const logout = () => ({
+export type LogoutAction = {
+    type: typeof LOGOUT;
+};
+export const logout = (): LogoutAction => ({
     type: LOGOUT,
 });
