@@ -1,7 +1,9 @@
 import { ApplicationState } from './application';
+import { EntriesState } from './entries';
 
 export type StoreState = {
     application: ApplicationState;
+    entries: EntriesState;
 };
 
 export type Action = {

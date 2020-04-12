@@ -58,3 +58,11 @@ export type CreateNewNoteErrorAction = {
 export const createNewNoteError = (): CreateNewNoteErrorAction => ({
     type: CREATE_NEW_NOTE_ERROR,
 });
+
+export type EntriesAction =
+    | FetchEntriesAction
+    | ReceiveEntriesAction
+    | FetchEntriesErrorAction
+    | CreateNewNoteAction
+    | CreateNewNoteSuccessAction
+    | CreateNewNoteErrorAction;

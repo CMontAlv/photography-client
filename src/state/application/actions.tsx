@@ -13,3 +13,5 @@ export type LogoutAction = {
 export const logout = (): LogoutAction => ({
     type: LOGOUT,
 });
+
+export type ApplicationAction = LoginAction | LogoutAction;
