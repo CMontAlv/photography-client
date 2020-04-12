@@ -19,7 +19,7 @@ export const initAmplify = () => {
         API: {
             endpoints: [
                 {
-                    name: 'notes',
+                    name: config.apiGateway.API_NAME,
                     endpoint: config.apiGateway.URL,
                     region: config.apiGateway.REGION,
                 },
