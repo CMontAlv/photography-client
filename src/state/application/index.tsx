@@ -1,16 +1,19 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT } from './constants';
+import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGN_UP, SIGN_UP_ERROR } from './constants';
+
 import { Action } from '../types';
 
 export type ApplicationState = {
     isLoggedIn: boolean;
     isLoggingIn: boolean;
     hasLoginError: boolean;
+    hasSignUpError: boolean;
 };
 
 export const applicationInitialState: ApplicationState = {
     isLoggedIn: false,
     isLoggingIn: false,
     hasLoginError: false,
+    hasSignUpError: false,
 };
 
 export const application = (state: ApplicationState, action: Action) => {
@@ -39,6 +42,17 @@ export const application = (state: ApplicationState, action: Action) => {
                 ...state,
                 isLoggedIn: false,
             };
+        case SIGN_UP:
+            return {
+                ...state,
+                hasSignUpError: false,
+            };
+        case SIGN_UP_ERROR: {
+            return {
+                ...state,
+                hasSignUpError: true,
+            };
+        }
         default:
             return state;
     }

@@ -33,8 +33,19 @@ export const signUp = async (email: string, password: string): Promise<[any, Err
     }
 };
 
+export const confirmSignUp = async (email: string, confirmationCode: string): Promise<[any, Error | null]> => {
+    try {
+        await Auth.confirmSignUp(email, confirmationCode);
+
+        return [{ status: 200 }, null];
+    } catch (e) {
+        return [null, e];
+    }
+};
+
 export const api = {
     login,
     logout,
     signUp,
+    confirmSignUp,
 };

@@ -1,0 +1,8 @@
+.navigation-bar .logout {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.navigation-bar .logout:hover {
+    color: #000;
+}

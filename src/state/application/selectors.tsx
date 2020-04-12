@@ -13,3 +13,8 @@ export const getHasLoginError: (state: StoreState) => boolean = createSelector(
     [getState],
     (state) => state.hasLoginError
 );
+
+export const getHasSignUpError: (state: StoreState) => boolean = createSelector(
+    [getState],
+    (state) => state.hasSignUpError
+);

@@ -10,7 +10,7 @@ export const useFormFields: FuncType<any> = (initialState) => {
         function ({ target: { id, value } }) {
             setValues({
                 ...fields,
-                ...(id && value ? { [id]: value } : {}),
+                ...(id && typeof value === 'string' ? { [id]: value } : {}),
             });
         },
     ];

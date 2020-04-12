@@ -8,6 +8,8 @@ import { logout } from '../../state/application/actions';
 import { getIsLoggedIn } from '../../state/application/selectors';
 import { useDispatch, useSelector } from '../../state/store';
 
+import './styles.css';
+
 export const NavBar: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -22,13 +24,15 @@ export const NavBar: React.FunctionComponent = () => {
     };
 
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar className="navigation-bar" bg="light" expand="lg">
             <Navbar.Brand href="/home">Photo Journal</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     {isLoggedIn ? (
-                        <Nav.Item onClick={logoutHandler}>Log Out</Nav.Item>
+                        <Nav.Item className="logout" onClick={logoutHandler}>
+                            Log Out
+                        </Nav.Item>
                     ) : (
                         <>
                             <Nav.Item>
