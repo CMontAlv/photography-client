@@ -1,18 +1,23 @@
 import * as React from 'react';
 import { Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 import { api } from '../../api/entries';
 
 import { AsyncButton } from '../../components/async-button';
 import { Page } from '../../components/page';
 
+import * as routes from '../../constants/routes';
+
 import { createNewEntry, createNewEntryError, createNewEntrySuccess } from '../../state/entries/actions';
-import { useSelector, useDispatch } from '../../state/store';
+import { useDispatch } from '../../state/store';
 
 import './styles.css';
 
 export const NewEntry: React.FunctionComponent = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const file = React.useRef(null);
     const [content, setContent] = React.useState('');
     const [isUploadingEntry, setIsUploadingEntry] = React.useState(false);
@@ -42,6 +47,7 @@ export const NewEntry: React.FunctionComponent = () => {
 
             result && dispatch(createNewEntrySuccess(result));
             setIsUploadingEntry(false);
+            history.push(routes.home);
         },
         [content, file, dispatch]
     );

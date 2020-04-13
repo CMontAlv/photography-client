@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import { api } from '../../api/entries';
 
@@ -8,6 +8,8 @@ import { AsyncButton } from '../../components/async-button';
 import { S3PrivateImage } from '../../components/s3-private-image';
 import { Page } from '../../components/page';
 import { NotFound } from '../../components/not-found';
+
+import * as routes from '../../constants/routes';
 
 import { updateEntry, updateEntryError, updateEntrySuccess } from '../../state/entries/actions';
 import { getEntryById } from '../../state/entries/selectors';
@@ -17,9 +19,11 @@ import './styles.css';
 
 export const Entry: React.FunctionComponent = () => {
     const { entryId } = useParams();
+    const history = useHistory();
+    const dispatch = useDispatch();
+
     const { content, photoKey } = useSelector((state) => getEntryById(state, { entryId })) || {};
 
-    const dispatch = useDispatch();
     const file = React.useRef(null);
     const [entryContent, setContent] = React.useState(content || '');
     const [isUploadingEntry, setIsUploadingEntry] = React.useState(false);
@@ -60,6 +64,18 @@ export const Entry: React.FunctionComponent = () => {
         [entryId, photoKey, entryContent, file, dispatch]
     );
 
+    const deleteHandler = React.useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (entryId) {
+            const [, error] = await api.deleteEntry(entryId);
+
+            if (!error) {
+                history.push(routes.home);
+            }
+        }
+    }, []);
+
     if (!content || !photoKey) {
         return <NotFound />;
     }
@@ -77,6 +93,9 @@ export const Entry: React.FunctionComponent = () => {
                 </Form.Group>
                 <AsyncButton block type="submit" isLoading={isUploadingEntry} disabled={!content}>
                     Update
+                </AsyncButton>
+                <AsyncButton block onClick={deleteHandler} isLoading={false} variant="danger">
+                    Delete
                 </AsyncButton>
             </Form>
         </Page>
