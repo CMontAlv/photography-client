@@ -53,7 +53,6 @@ export const Entry: React.FunctionComponent = () => {
                     return;
                 }
 
-                // @ts-ignore
                 dispatch(updateEntrySuccess({ entryId, content: result.content, photoKey: result.photoKey }));
                 setIsUploadingEntry(false);
             }

@@ -19,7 +19,6 @@ export const Login: React.FunctionComponent = () => {
 
     const dispatch = useDispatch();
     const isLoggingIn = useSelector(getIsLoggingIn);
-    // @ts-ignore
     const hasLoginError = useSelector(getHasLoginError);
 
     const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
