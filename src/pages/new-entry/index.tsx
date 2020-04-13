@@ -49,7 +49,7 @@ export const NewEntry: React.FunctionComponent = () => {
             setIsUploadingEntry(false);
             history.push(routes.home);
         },
-        [content, file, dispatch]
+        [content, file, dispatch, history]
     );
 
     return (

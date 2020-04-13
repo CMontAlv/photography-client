@@ -64,17 +64,20 @@ export const Entry: React.FunctionComponent = () => {
         [entryId, photoKey, entryContent, file, dispatch]
     );
 
-    const deleteHandler = React.useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const deleteHandler = React.useCallback(
+        async (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
 
-        if (entryId) {
-            const [, error] = await api.deleteEntry(entryId);
+            if (entryId) {
+                const [, error] = await api.deleteEntry(entryId);
 
-            if (!error) {
-                history.push(routes.home);
+                if (!error) {
+                    history.push(routes.home);
+                }
             }
-        }
-    }, []);
+        },
+        [entryId, history]
+    );
 
     if (!content || !photoKey) {
         return <NotFound />;
