@@ -1,6 +1,6 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { api } from '../../api/auth';
 
@@ -44,9 +44,9 @@ export const NavBar: React.FunctionComponent = () => {
                                 <Nav.Link href={routes.newEntry}>Create Entry</Nav.Link>
                             </Nav.Item>
                             <Nav.Item className="logout">
-                                <a className="nav-link" onClick={logoutHandler} href="/">
+                                <Link className="nav-link" onClick={logoutHandler} to="/">
                                     Log Out
-                                </a>
+                                </Link>
                             </Nav.Item>
                         </>
                     ) : (

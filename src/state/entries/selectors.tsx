@@ -14,3 +14,9 @@ export const getCreateNewEntryError: Selector<boolean> = createSelector(
     [getState],
     (state) => state.createNewEntryError
 );
+
+export const getEntryById: Selector<Entry | undefined> = createSelector(
+    [getEntries, (state: StoreState, props: { entryId: string }) => props.entryId],
+
+    (entries, entryId) => entries.find((entry) => entry.entryId === entryId)
+);

@@ -5,6 +5,9 @@ import {
     CREATE_NEW_ENTRY,
     CREATE_NEW_ENTRY_SUCCESS,
     CREATE_NEW_ENTRY_ERROR,
+    UPDATE_ENTRY,
+    UPDATE_ENTRY_SUCCESS,
+    UPDATE_ENTRY_ERROR,
 } from './constants';
 import { Entry } from './types';
 import { Action } from '../types';
@@ -13,12 +16,14 @@ export type EntriesState = {
     entries: Array<Entry>;
     fetchEntriesError: boolean;
     createNewEntryError: boolean;
+    updateNewEntryError: boolean;
 };
 
 export const entriesInitialState: EntriesState = {
     entries: [],
     fetchEntriesError: false,
     createNewEntryError: false,
+    updateNewEntryError: false,
 };
 
 export const entries = (state: EntriesState, action: Action) => {
@@ -52,6 +57,31 @@ export const entries = (state: EntriesState, action: Action) => {
             return {
                 ...state,
                 createNewEntryError: true,
+            };
+        case UPDATE_ENTRY:
+            return {
+                ...state,
+                updateNewEntryError: false,
+            };
+        case UPDATE_ENTRY_SUCCESS:
+            const { entryId, content, photoKey } = action.payload;
+
+            return {
+                ...state,
+                entries: state.entries.map((entry) =>
+                    entry.entryId === entryId
+                        ? {
+                              ...entry,
+                              ...(content ? { content } : {}),
+                              ...(photoKey ? { photoKey } : {}),
+                          }
+                        : entry
+                ),
+            };
+        case UPDATE_ENTRY_ERROR:
+            return {
+                ...state,
+                updateNewEntryError: true,
             };
         default:
             return state;

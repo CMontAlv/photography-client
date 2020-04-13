@@ -1,0 +1,10 @@
+@media all and (min-width: 480px) {
+    .page.entry-page {
+        padding: 60px 0;
+    }
+
+    .entry-page form {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}

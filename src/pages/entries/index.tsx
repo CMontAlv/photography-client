@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Button, Row, Container, Col } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Storage } from 'aws-amplify';
 
 import { api } from '../../api/entries';
 
-import { Entry } from '../../components/entry';
+import { EntryMiniature } from '../../components/entry-miniature';
 import { Page } from '../../components/page';
 
 import * as routes from '../../constants/routes';
@@ -34,10 +34,6 @@ export const Entries: React.FunctionComponent = () => {
         }
 
         dispatch(receiveEntries(entries));
-
-        const result = await Storage.list('', { level: 'private' });
-
-        console.log(result);
     };
 
     React.useEffect(() => {
@@ -49,9 +45,11 @@ export const Entries: React.FunctionComponent = () => {
             {entries.length ? (
                 <Container>
                     <Row>
-                        {entries.map(({ content, photoKey }) => (
+                        {entries.map(({ entryId, content, photoKey }) => (
                             <Col xs={6}>
-                                <Entry content={content} photoKey={photoKey} />
+                                <Link to={`entry/${entryId}`}>
+                                    <EntryMiniature content={content} photoKey={photoKey} />
+                                </Link>
                             </Col>
                         ))}
                     </Row>

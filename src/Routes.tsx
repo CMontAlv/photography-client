@@ -11,6 +11,7 @@ import { Login } from './pages/login';
 import { SignUp } from './pages/sign-up';
 import { Entries } from './pages/entries';
 import { NewEntry } from './pages/new-entry';
+import { Entry } from './pages/entry';
 
 export const Routes: React.FunctionComponent = () => (
     <Switch>
@@ -25,6 +26,9 @@ export const Routes: React.FunctionComponent = () => (
         </UnauthenticatedRoute>
         <AuthenticatedRoute exact path={routes.newEntry}>
             <NewEntry />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute exact path={routes.entry}>
+            <Entry />
         </AuthenticatedRoute>
         {/* Finally, catch all unmatched routes */}
         <Route>

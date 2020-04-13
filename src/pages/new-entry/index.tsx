@@ -40,7 +40,7 @@ export const NewEntry: React.FunctionComponent = () => {
                 return;
             }
 
-            dispatch(createNewEntrySuccess({ content: result.content, photoKey: result.photoKey }));
+            result && dispatch(createNewEntrySuccess(result));
             setIsUploadingEntry(false);
         },
         [content, file, dispatch]
@@ -53,7 +53,7 @@ export const NewEntry: React.FunctionComponent = () => {
                     <Form.Control value={content} as="textarea" onChange={handleContentChange} />
                 </Form.Group>
                 <Form.Group controlId="file">
-                    <Form.Label>Attachment</Form.Label>
+                    <Form.Label>Photo</Form.Label>
                     <Form.Control onChange={handleFileChange} type="file" accept="image/*" />
                 </Form.Group>
                 <AsyncButton block type="submit" isLoading={isUploadingEntry} disabled={!content}>

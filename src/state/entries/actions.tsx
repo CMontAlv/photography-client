@@ -5,6 +5,9 @@ import {
     CREATE_NEW_ENTRY,
     CREATE_NEW_ENTRY_SUCCESS,
     CREATE_NEW_ENTRY_ERROR,
+    UPDATE_ENTRY,
+    UPDATE_ENTRY_SUCCESS,
+    UPDATE_ENTRY_ERROR,
 } from './constants';
 import { Entry } from './types';
 
@@ -54,4 +57,28 @@ export type CreateNewEntryErrorAction = {
 };
 export const createNewEntryError = (): CreateNewEntryErrorAction => ({
     type: CREATE_NEW_ENTRY_ERROR,
+});
+
+export type UpdateEntryAction = {
+    type: typeof UPDATE_ENTRY;
+};
+export const updateEntry = (): UpdateEntryAction => ({
+    type: UPDATE_ENTRY,
+});
+
+export type UpdateEntrySuccessPayload = { entryId: string; content: string; photoKey: string };
+export type UpdateEntrySuccessAction = {
+    type: typeof UPDATE_ENTRY_SUCCESS;
+    payload: UpdateEntrySuccessPayload;
+};
+export const updateEntrySuccess = (payload: UpdateEntrySuccessPayload): UpdateEntrySuccessAction => ({
+    type: UPDATE_ENTRY_SUCCESS,
+    payload,
+});
+
+export type UpdateEntryErrorAction = {
+    type: typeof UPDATE_ENTRY_ERROR;
+};
+export const updateEntryError = (): UpdateEntryErrorAction => ({
+    type: UPDATE_ENTRY_ERROR,
 });
