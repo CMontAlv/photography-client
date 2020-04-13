@@ -49,15 +49,11 @@ export const Entries: React.FunctionComponent = () => {
             {entries.length ? (
                 <Container>
                     <Row>
-                        {entries
-                            .concat(entries)
-                            .concat(entries)
-                            .concat(entries)
-                            .map(({ content, attachment }) => (
-                                <Col xs={6}>
-                                    <Entry content={content} attachment={attachment} />
-                                </Col>
-                            ))}
+                        {entries.map(({ content, photoKey }) => (
+                            <Col xs={6}>
+                                <Entry content={content} photoKey={photoKey} />
+                            </Col>
+                        ))}
                     </Row>
                 </Container>
             ) : (

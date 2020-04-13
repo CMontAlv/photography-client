@@ -5,10 +5,10 @@ import { s3Upload } from '../s3';
 
 export const createEntry = async (file: any, content: string): Promise<[any, Error | null]> => {
     try {
-        const attachment = file ? await s3Upload(file) : null;
+        const photoKey = file ? await s3Upload(file) : null;
 
         const result = await API.post(config.apiGateway.API_NAME, '/entries', {
-            body: { content, attachment },
+            body: { content, photoKey },
         });
 
         return [result, null];

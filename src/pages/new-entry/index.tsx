@@ -40,7 +40,7 @@ export const NewEntry: React.FunctionComponent = () => {
                 return;
             }
 
-            dispatch(createNewEntrySuccess({ content: result.content, attachment: result.attachment }));
+            dispatch(createNewEntrySuccess({ content: result.content, photoKey: result.photoKey }));
             setIsUploadingEntry(false);
         },
         [content, file, dispatch]

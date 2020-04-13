@@ -3,17 +3,21 @@ import { Card } from 'react-bootstrap';
 
 import { S3PrivateImage } from '../s3-private-image';
 
+import './styles.css';
+
 type Props = {
     content: string;
-    attachment?: string;
+    photoKey?: string;
     createdAt?: number;
 };
 
-export const Entry = React.memo<Props>(({ content, attachment }) => {
+export const Entry = React.memo<Props>(({ content, photoKey }) => {
     return (
-        <Card>
-            {attachment ? <S3PrivateImage key={attachment} /> : null}
-            <Card.Text>{content}</Card.Text>
+        <Card className="entry">
+            {photoKey ? <S3PrivateImage imageKey={photoKey} /> : null}
+            <Card.Body>
+                <Card.Text>{content}</Card.Text>
+            </Card.Body>
         </Card>
     );
 });

@@ -1,5 +1,5 @@
 export const config = {
-    MAX_ATTACHMENT_SIZE: 5000000,
+    MAX_PHOTO_SIZE: 5000000,
     s3: {
         REGION: process.env.REACT_APP_REGION,
         BUCKET: process.env.REACT_APP_BUCKET,

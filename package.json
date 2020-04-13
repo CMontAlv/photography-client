@@ -12,7 +12,6 @@
         "@types/react-dom": "^16.9.0",
         "@types/react-router-dom": "^5.1.4",
         "aws-amplify": "^3.0.7",
-        "aws-amplify-react": "^4.1.6",
         "bootstrap": "^4.4.1",
         "react": "^16.13.1",
         "react-bootstrap": "^1.0.0",
