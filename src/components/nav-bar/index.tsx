@@ -19,7 +19,7 @@ export const NavBar: React.FunctionComponent = () => {
     const isLoggedIn = useSelector(getIsLoggedIn);
 
     const logoutHandler = React.useCallback(
-        async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
             e.preventDefault();
 
             const [, error] = await api.logout();
@@ -39,9 +39,16 @@ export const NavBar: React.FunctionComponent = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     {isLoggedIn ? (
-                        <Nav.Item className="logout" onClick={logoutHandler}>
-                            Log Out
-                        </Nav.Item>
+                        <>
+                            <Nav.Item>
+                                <Nav.Link href={routes.newEntry}>Create Entry</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item className="logout">
+                                <a className="nav-link" onClick={logoutHandler} href="/">
+                                    Log Out
+                                </a>
+                            </Nav.Item>
+                        </>
                     ) : (
                         <>
                             <Nav.Item>
