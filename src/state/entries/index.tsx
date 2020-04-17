@@ -1,3 +1,5 @@
+import { EntriesActions } from './actions';
+
 import {
     FETCH_ENTRIES,
     RECEIVE_ENTRIES,
@@ -10,7 +12,6 @@ import {
     UPDATE_ENTRY_ERROR,
 } from './constants';
 import { Entry } from './types';
-import { Action } from '../types';
 
 export type EntriesState = {
     entries: Array<Entry>;
@@ -26,7 +27,7 @@ export const entriesInitialState: EntriesState = {
     updateNewEntryError: false,
 };
 
-export const entries = (state: EntriesState, action: Action) => {
+export const entries = (state: EntriesState, action: EntriesActions) => {
     switch (action.type) {
         case FETCH_ENTRIES:
             return {

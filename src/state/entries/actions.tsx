@@ -82,3 +82,14 @@ export type UpdateEntryErrorAction = {
 export const updateEntryError = (): UpdateEntryErrorAction => ({
     type: UPDATE_ENTRY_ERROR,
 });
+
+export type EntriesActions =
+    | FetchEntriesAction
+    | ReceiveEntriesAction
+    | FetchEntriesErrorAction
+    | CreateNewEntryAction
+    | CreateNewEntrySuccessAction
+    | CreateNewEntryErrorAction
+    | UpdateEntryAction
+    | UpdateEntrySuccessAction
+    | UpdateEntryErrorAction;

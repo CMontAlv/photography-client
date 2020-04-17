@@ -1,6 +1,5 @@
+import { ApplicationActions } from './actions';
 import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SIGN_UP, SIGN_UP_ERROR } from './constants';
-
-import { Action } from '../types';
 
 export type ApplicationState = {
     isLoggedIn: boolean;
@@ -16,7 +15,7 @@ export const applicationInitialState: ApplicationState = {
     hasSignUpError: false,
 };
 
-export const application = (state: ApplicationState, action: Action) => {
+export const application = (state: ApplicationState, action: ApplicationActions) => {
     switch (action.type) {
         case LOGIN:
             return {

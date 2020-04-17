@@ -48,3 +48,12 @@ export type SignUpErrorAction = {
 export const signUpError = (): SignUpErrorAction => ({
     type: SIGN_UP_ERROR,
 });
+
+export type ApplicationActions =
+    | LoginAction
+    | LoginSuccessAction
+    | LoginErrorAction
+    | LogoutAction
+    | SignUpAction
+    | SignUpSuccessAction
+    | SignUpErrorAction;
